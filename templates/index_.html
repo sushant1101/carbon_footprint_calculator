@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+      
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    
+    <script src="../templates/assets/js/color-modes.js"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+
+   
+   
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Connect Green Calculator</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/navbar-fixed/">
+
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/dist/css/bootstrap.min.css') }}">
+
+<!-- <link href="../templates/assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
+    <style>
+
+
+        
+    .tab {
+      display: none;
+    }
+  
+
+
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <!-- <link href="../templates/navbar-fixed.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/navbar-fixed.css') }}">
+  </head>
+  <body style="font-family: Poppins;">
+   
+
+    
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-white" style="box-shadow: 0 2px 4px rgb(0 0 0 /11%);">
+  <div class="container-fluid" style="margin: 0px 70px;">
+    <a class="navbar-brand" href="#" style="color: #82ae46; font-weight:800; font-size:20px;">CONNECT GREEN</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mb-2 mb-md-0" style="margin-left: auto!important;;">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#" style="color: black; font-size:13px;">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"  style="color: black; font-size:13px;">CALCULATE FOOTPRINT</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  style="color: black; font-size:13px;">ABOUT</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link "  style="color: black; font-size:13px;">CONTACT</a>
+          </li>
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+  <div class="p-3 rounded" style="border:1px solid #ededed; border-radius: 10px; box-shadow: 0 2px 4px rgb(0 0 0 /11%);">
+    <h2 style="text-align: center; font-family: 'Poppins', Arial, sans-serif;">Calculate your carbon footprint</h2>
+  </div>
+
+  <div class="container-fluids" style="margin-top: 20px; font-size:15px !important;">
+      <div class="row">
+           <div class="col-12" style="margin-bottom:25px ;">
+            <div class=" p-3 rounded" style="border:1px solid #ededed; border-radius: 10px; box-shadow: 0 2px 4px rgb(0 0 0 /11%);">
+                <h4 style="margin: 10px; font-size:15px;"> <b>Do you want to calculate the carbon footprint ?</b></h4>
+                <form class="form-inline" id="myForm10" action="myForm10" style="margin: 5px;">
+                    <div class="form-check form-check-inline" style="width: 50%;">
+                        <input class="form-check-input"  onclick="openTab('tab1')"  type="radio" name="exampleRadios" id="exampleRadios1" value="option1" >
+                        <label class="form-check-label" for="exampleRadios1">
+                          Individual/Household
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"  onclick="openTab('tab2')" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" >
+                        <label class="form-check-label" for="exampleRadios2">
+                          Company
+                        </label>
+                    </div>
+                  </form>
+            </div>  
+            </div>
+
+
+            <script>
+                function openTab(tabId) {
+                  // Hide all tabs
+                  var tabs = document.getElementsByClassName("tab");
+                  for (var i = 0; i < tabs.length; i++) {
+                    tabs[i].style.display = "none";
+                  }
+                  
+                  // Show the selected tab
+                  document.getElementById(tabId).style.display = "block";
+                }
+              </script>
+
+
+            <div id="tab1" class="col-12 tab" style="margin-bottom: 25px;">
+                <div class=" p-3 rounded" style="border:1px solid #ededed; border-radius: 10px; box-shadow: 0 2px 4px rgb(0 0 0 /11%);">
+                    <h2 style="margin: 10px; font-size:15px;"> <b>Calculate the carbon footprint for Individual/Household</b></h2>
+                
+                    <form id="infoform" method="POST">
+                    <div class="row">
+                        <div class="col-4" style="margin-bottom: 10px;">
+                            <input type="text" id="" name="name" placeholder="Full Name" class="form-control">
+                            </div>
+                        <div class="col-4" style="margin-bottom: 10px;">
+                            <input type="email" id="" name="email" placeholder="Email" class="form-control">
+                        </div>
+                        <div class="col-4" style="margin-bottom: 10px;">
+                            <input type="number" id="" name="no_of_user" placeholder="No. of Family Member" class="form-control">
+                        </div>
+                        <div class="col-4" style="margin-bottom: 10px;">
+                            <input type="text" id="" name="country" placeholder="Country" class="form-control">
+                        </div>
+                        
+                        <div class="col-4" style="margin-bottom: 10px;">
+                            <div style="margin-top: 10px;">
+                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                <label for="vehicle1"> Agree to Terms & Conditions </label><br>
+                                </div>
+                        </div>
+                        <div class="col-4">
+                            <input type="submit" value="Submit" style="border: 1px solid #82ae46; background-color:#82ae46; color:white; margin: 10px; border-radius:10px; padding:5px;">
+                        </div>
+                </form>
+
+                <script>
+                    
+                    $(document).ready(function(){
+                        $('#infoform').submit(function(e){
+                            e.preventDefault();
+                            var formData = $(this).serialize();
+                            $.post('/indform', formData, function(response){
+                                console.log(response);
+                            });
+                        });
+                    });
+                    
+                </script>
+
+
+
+
+
+                </div>
+            </div>
+            </div>
+
+            <div id="tab2" class="col-12 tab" style="margin-bottom: 25px;">
+                <div class=" p-3 rounded" style="border:1px solid #ededed; border-radius: 10px; box-shadow: 0 2px 4px rgb(0 0 0 /11%);">
+                    <h2 style="margin: 10px; font-size:15px;"> <b>Calculate the carbon footprint for Company?</b></h2>
+                
+                    <form id="cmpyform" method="POST">
+                    <div class="row">
+                        <div class="col-4" style="margin-bottom: 10px;">
+                            <input type="text" id="name" name="name" placeholder="Company Name" class="form-control">
+                            </div>
+                        <div class="col-4" style="margin-bottom: 10px;">
+                            <input type="email" id="email" name="email" placeholder="Email" class="form-control">
+                        </div>
+                        <div class="col-4" style="margin-bottom: 10px;">
+                            <input type="number" id="no_of_mem" name="no_of_mem" placeholder="No. of Employees" class="form-control">
+                        </div>
+                        <div class="col-4" style="margin-bottom: 10px;">
+                            <input type="text" id="country" name="country" placeholder="Country" class="form-control">
+                        </div>
+                        <div class="col-4" style="margin-bottom: 10px;">
+                            <input type="text" id="cal_type" name="cal_type" placeholder="Select Type" class="form-control">
+                        </div>
+                        <div class="col-4" style="margin-bottom: 10px;">
+                            <div style="margin-top: 10px;">
+                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                <label for="vehicle1"> Agree to Terms & Conditions </label><br>
+                                </div>
+                        </div>
+                        <div class="col-4">
+                            <input type="submit" value="Submit" style="border: 1px solid #82ae46; background-color:#82ae46; color:white; margin: 10px; border-radius:10px; padding:5px;">
+                        </div>
+                </form>
+
+                <script>
+                    $(document).ready(function(){
+                        $('#cmpyform').submit(function(e){
+                            e.preventDefault();
+                            var formData = $(this).serialize();
+                            $.post('/cmpyform', formData, function(response){
+                                console.log(response);
+                            });
+                        });
+                    });
+                </script>
+
+                </div>
+            </div>
+            </div>
+
+
+            <div class="col-5">
+                <div class=" p-3 rounded" style="border:1px solid #ededed; border-radius: 10px; box-shadow: 0 2px 4px rgb(0 0 0 /11%);">
+                    <h4 style="margin: 10px; font-size:15px"> Calculate the carbon emissions from the household's transportation? </h4>
+                    
+
+
+                      <form id="transportation" method="POST">
+                          <div class="row">
+                            <div class="col-6">
+                                <input type="number" id="name" name="psmiles" placeholder="Miles" class="form-control">
+                                <br>
+                            </div>
+                            <div class="col-6">
+                            <select id="inputState" name="pstype" placeholder="KWatt"  from="myForm" class="form-control">
+                                <option selected>Personal Transport Type</option>
+                            <option value="Diesel car">Diesel Car</option>
+                            <option value="Gasoline car">Gasoline Car</option>
+                            <option value="Hybrid car">Hybrid</option>
+                            <option value="Electric car (grid average">Electric car</option>
+                            </select>
+                            <br>
+                            </div>
+
+                            <div class="col-6">
+                                <input type="number" id="name" name="pbmiles" placeholder="Miles" class="form-control">
+                                <br>
+                            </div>
+                            <div class="col-6">
+                            <select id="inputState" name="pbtype" placeholder="KWatt"  from="myForm" class="form-control">
+                                <option selected>Public Transport Type</option>
+                            <option value="Bus (diesel)">Bus (Diesel)</option>
+                            <option value="Train (diesel)">Bus (CNG)</option>
+                            <option value="Train (diesel)">Train (Diesel)</option>
+                            <option value="Train (electric)">Train (Electric)</option>
+                            <option value="Airplane">Airplane </option>
+                            </select>
+                            <br>
+                            </div>
+
+
+
+
+
+
+
+                            <div class="col-12" style="text-align: center;">
+                                <input type="submit" value="Submit" style="border: 1px solid #82ae46; background-color:#82ae46; color:white; margin: 10px; border-radius:10px; padding:5px;">
+                            </div>
+                        
+                    </div>
+                    </form>
+
+
+                    <script>
+                        const emptyArray = [0,0,0,0];
+                        $(document).ready(function() {
+                            $('#transportation').submit(function(e) {
+                                e.preventDefault();
+                                var formData = $(this).serialize();
+                                $.post('/transportation', formData, function(response) {
+                                    console.log(response);
+                                    $('#result').text(response.message);
+                                    renderChartData(response.message)
+                                    var a = response.message[0] + response.message[1]
+                                    emptyArray[0] = a
+                                    // Handle the response from the server
+                                    // ...
+                                });
+                            });
+                        });
+                
+                        
+                    </script>
+
+
+                     
+
+                
+
+                      <canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
+
+
+            <script>
+                function renderChartData(datas){
+
+                    var ctx = document.getElementById("myChart1").getContext("2d");
+
+                    // Update chart function
+                    //updateChart(datas, 0);
+
+                    const newData = {
+                        label: 'Transportation',
+                        value: datas[0]+datas[1]
+                    };
+            
+                    // Add new data and update the chart
+                    myChart123.data.labels[0] = newData.label;
+                    myChart123.data.datasets[0].data[0] = newData.value;
+                    myChart123.update();
+
+                    var xValues = ["Personal Transportation", "Public Transporatation"];
+                    var yValues = [55, 49, 44, 24];
+                    var barColors = [
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                    ];
+
+                    var options = {
+                        title: {
+                            display: true,
+                            text: "CO2 Emission by Transportation"
+                        }
+                    }
+
+                    var myChart = new Chart(ctx, {
+                            type: "doughnut",
+                            data: {
+                                labels: xValues,
+                                datasets: [{
+                                backgroundColor: barColors,
+                                data: datas
+                                }]
+                            },
+                            options: {
+
+                                title: {
+                                    display: true,
+                                    text: "Carbon Footprint"
+                                    }
+
+                            }
+                    });
+
+
+                }
+
+
+
+            </script>
+
+
+
+
+
+
+
+                </div>  
+                </div>
+
+           <div class="col-7">
+               <div class="p-3 rounded" style="border:1px solid #ededed; border-radius: 10px; box-shadow: 0 2px 4px rgb(0 0 0 /11%);">
+                <h4 style="margin: 10px; font-size:15px"> Your Total Carbon Footprint !</h4>
+                <canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
+
+                <script>
+                    var xValues = ["Transportation", "Energy", "Waste", "Food"];
+                    var yValues = [55, 49, 44, 24];
+                    var barColors = [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(75, 192, 192)',
+                    'rgb(153, 102, 255)'
+                                    ];
+                    
+                    const myChart123 = new Chart("myChart2", {
+                    type: "doughnut",
+                    data: {
+                        labels: [0,0,0,0],
+                        datasets: [{
+                        backgroundColor: barColors,
+                        data: [0,0,0,0]
+                        }]
+                    },
+                    options: {
+                        title: {
+                        display: true,
+                        text: "Carbon Footprint"
+                        }
+                    }
+                    });
+
+
+                    function updateChart(datas, i) {
+                        console.log(datas[0]+datas[1]);
+                        myChart123.data.datasets[i].data = datas[0]+datas[1];
+                        myChart123.update();
+                        console.log("updated")
+                    }
+
+
+
+
+                    </script>
+                </div>
+            </div>
+
+
+            
+            <div class="col-6" style="margin-top: 30px;">
+                <div class=" p-3 rounded" style="border:1px solid #ededed; border-radius: 10px; box-shadow: 0 2px 4px rgb(0 0 0 /11%);">
+                    <h4 style="margin: 10px; font-size:15px"> Calculate the carbon emissions from the household's energy ? </h4>
+                    
+                    <form id="energy" method="POST">
+                        <div class="row justify-content-center">
+                            <div class="col-6" >
+                                <input type="Number" class="form-control" placeholder="Kwatt" name="kwatt">
+                            </div>
+                            <div class="col-6">
+                                <select id="inputState" name="energytype" placeholder="KWatt"  from="energy" class="form-control">
+                                    <option selected>Energy Type</option>
+                                <option value="Wind">Wind</option>
+                                <option value="Hydro">Hydro</option>
+                                <option value="Biomass">Biomass</option>
+                                <option value="Natural Gas"> Natural Gas</option>
+                                <option value="Coal">Coal</option>
+                                </select>
+                                <br>
+                                </div>
+                                <div class="col-12" style="text-align: center;">
+                                    <input type="submit" value="Submit" style="border: 1px solid #82ae46; background-color:#82ae46; color:white; margin: 10px; border-radius:10px; padding:5px;">
+                                </div>
+                        </div>
+                      </form>
+
+                      <script>
+                          $(document).ready(function(){
+                            $('#energy').submit(function(e){
+                                e.preventDefault();
+                                var formData = $(this).serialize();
+                                $.post('/energy', formData, function(response){
+                                    console.log(response);
+                                    renderChartDataenergy(response.message)
+                                });
+
+                            });
+                          });
+                      </script>
+
+
+
+                      <canvas id="myChartenergy" style="width:100%;max-width:600px"></canvas>
+
+
+                      <script>
+                        function renderChartDataenergy(datas){
+
+                            const newData12 = {
+                                label: 'Energy',
+                                value: datas[0]
+                            };
+                    
+                            // Add new data and update the chart
+                            //myChart123.data.labels.push(newData12.label);
+                            //myChart123.data.datasets[0].data.push(newData12.value);
+                            myChart123.data.labels[1] = newData12.label;
+                            myChart123.data.datasets[0].data[1] = newData12.value;
+                            myChart123.update();
+
+
+
+
+                            var ctx = document.getElementById("myChartenergy").getContext("2d");
+
+                            var xValues = ["Energy"];
+                            var yValues = [55];
+                            var barColors = [
+                            'rgb(54, 162, 235)'
+                            ];
+                            var options = {
+                                title: {
+                                    display: true,
+                                    text: "Carbon Footprint"
+                                }
+                            }
+
+
+                            var myChart = new Chart(ctx, {
+                                type: "horizontalBar",
+                                data: {
+                                    labels: xValues,
+                                    datasets: [{
+                                    backgroundColor: barColors,
+                                    data: datas
+                                    }]
+                                },
+                                options: {
+                                    legend: {display: false},
+                                    display: true,
+                                    responsive: true,
+                                    labels: xValues,
+                                    text: "Carbon Footprint",
+                                    scales: {
+                                      x: {
+                                        beginAtZero: true,
+                                      },
+                                    },
+                                  },
+                        });
+
+                        }
+                        </script>
+
+
+
+
+                </div>  
+                </div>
+
+
+                <div class="col-6" style="margin-top: 30px;">
+                    <div class=" p-3 rounded" style="border:1px solid #ededed; border-radius: 10px; box-shadow: 0 2px 4px rgb(0 0 0 /11%);">
+                        <h4 style="margin: 10px; font-size:15px">  Calculate the carbon emissions from the household's waste ? </h4>
+                        <form id="waste" method="POST">
+                            <div class="row justify-content-center">
+                                <div class="col-4" >
+                                    <label for="Landfill">Landfill</label>
+                                    <input type="Number" class="form-control" placeholder="kg" name="landfill">
+                                </div>
+                                <div class="col-4" >
+                                    <label for="Incineration">Incineration</label>
+                                    <input type="Number" class="form-control" placeholder="kg" name="incineration">
+                                </div>
+                                <div class="col-4" >
+                                    <label for="Recycling">Recycling</label>
+                                    <input type="Number" class="form-control" placeholder="kg" name="recycling">
+                                </div>
+                                
+                                    <div class="col-12" style="text-align: center;">
+                                        <input type="submit" value="Submit" style="border: 1px solid #82ae46; background-color:#82ae46; color:white; margin: 10px; border-radius:10px; padding:5px;">
+                                    </div>
+                            </div>
+                          </form>
+    
+                          <script>
+                              $(document).ready(function(){
+                                  $('#waste').submit(function(e){
+                                    e.preventDefault();
+                                    var formData = $(this).serialize();
+                                    $.post('/waste', formData, function(response){
+                                        console.log(response);
+                                        renderChartDataWaste(response.message);
+                                    });
+                                  });
+                              });
+                          </script>
+    
+    
+                          <canvas id="myChartwaste" style="width:100%;max-width:600px"></canvas>
+    
+                          <script>
+
+                            function renderChartDataWaste(datas){
+
+                                const newData12 = {
+                                    label: 'Waste',
+                                    value: datas[0]+datas[1]+datas[2]
+                                };
+                        
+                                // Add new data and update the chart
+                                myChart123.data.labels[2] = newData12.label;
+                                myChart123.data.datasets[0].data[2] = newData12.value;
+                                myChart123.update();
+
+
+                                var ctx = document.getElementById("myChartwaste").getContext("2d");
+
+                                var xValues = ["Landfill", "Incineration", "Recycling"];
+                                var yValues = [55, 49, 44];
+                                var barColors = ['rgb(255, 99, 132)',
+                                'rgb(255, 159, 64)',
+                                'rgb(255, 205, 86)'];
+
+                                var myChart = new Chart(ctx, {
+                                    type: "bar",
+                                    data: {
+                                      labels: xValues,
+                                      datasets: [{
+                                        backgroundColor: barColors,
+                                        data: datas
+                                      }]
+                                    },
+                                    options: {
+                                        responsive: true,
+                                        legend: {display: false},
+                                        scales: {
+                                            y: {
+                                              beginAtZero: true,
+                                            },
+                                          },
+                                        title: {
+                                          display: true,
+                                          text: "Carbon Footprint"
+                                        }
+                                      }
+                                });
+                                
+
+                            }
+
+
+
+                            
+                            </script>
+    
+    
+    
+    
+    
+                    </div>  
+                    </div>
+
+
+
+
+
+                    <div class="col-12" style="margin-top: 30px; margin-bottom:30px;">
+                        <div class=" p-3 rounded" style="border:1px solid #ededed; border-radius: 10px; box-shadow: 0 2px 4px rgb(0 0 0 /11%);">
+                            <h4 style="margin: 10px; font-size:15px"> Calculate the carbon emissions from the household's food? </h4>
+                            
+                            
+                            
+                            <div class="row">
+
+                                <div class="col-6">
+
+                                    <form id="food", method="POST">
+                                        <div class="row">
+                                        
+
+                                            <div class="col-6" style="text-align: center;">
+                                                <div style="margin-top: 30px;">
+                                                <input type="checkbox" id="vehicle1" name="avg_cons" value="Bike">
+                                                <label for="vehicle1"> Average food Consumption</label><br>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+
+                                            </div>
+
+                                            <div class="col-4" >
+                                                <label for="Landfill">Meat</label>
+                                                <input type="Number" name="meat" class="form-control" placeholder="kg">
+                                            </div>
+                                            <div class="col-4" >
+                                                <label for="Landfill">Dairy</label>
+                                                <input type="Number" name="dairy" class="form-control" placeholder="kg">
+                                            </div>
+                                            <div class="col-4" >
+                                                <label for="Landfill">Small Fish</label>
+                                                <input type="Number" name="small_fish" class="form-control" placeholder="kg">
+                                            </div>
+                                            <div class="col-4" >
+                                                <label for="Landfill">Large Fish</label>
+                                                <input type="Number" name="large_fish" class="form-control" placeholder="kg">
+                                            </div>
+                                            <div class="col-4" >
+                                                <label for="Landfill">Fruit & Vegetables</label>
+                                                <input type="Number" name="fandv" class="form-control" placeholder="kg">
+                                            </div>
+                                            <div class="col-4" >
+                                                <label for="Landfill">Bread</label>
+                                                <input type="Number" name="bread" class="form-control" placeholder="kg">
+                                            </div>
+                                            <div class="col-4" >
+                                                <label for="Landfill">Snack</label>
+                                                <input type="Number" name="snack" class="form-control" placeholder="kg">
+                                            </div>
+                                        
+                                                <div class="col-12" style="text-align: center;">
+                                                    <input type="submit" value="Submit" style="border: 1px solid #82ae46; background-color:#82ae46; color:white; margin: 10px; border-radius:10px; padding:5px;">
+                                                </div>
+                                           
+                                        </div>
+                                      </form>
+                                        <script>
+                                                $(document).ready(function(){
+                                                    $('#food').submit(function(e){
+                                                        e.preventDefault();
+                                                        var formData = $(this).serialize();
+                                                        $.post('/food', formData, function(response){
+                                                            console.log(response);
+                                                            renderChartDataFood(response.message);
+                                                        });
+                                                    });
+                                                })
+                                        </script>
+
+
+                                    </div>
+
+
+                                <div class="col-6">
+
+                                    <canvas id="myChartfood" style="width:100%;max-width:600px"></canvas>
+        
+        
+                                    <script>
+                                        function renderChartDataFood(datas){
+
+
+                                            const newData12 = {
+                                                label: 'Food',
+                                                value: datas[0]+datas[1]+datas[2]+datas[3]+datas[4]+datas[5]+datas[6]
+                                            };
+                                    
+                                            // Add new data and update the chart
+                                            myChart123.data.labels[3] = newData12.label;
+                                            myChart123.data.datasets[0].data[3] = newData12.value;
+                                            myChart123.update();
+
+
+                                            var ctx = document.getElementById('myChartfood').getContext('2d');
+
+                                            var xValues = ["Meat", "Dairy", "Small Fish", "Large Fish", "Fruit & Vegetable", "Bread", "Snack"];
+                                            var yValues = [55, 49, 44, 24, 15, 8, 9];
+                                            var barColors = [
+                                            'rgb(255, 99, 132)',
+                                            'rgb(255, 159, 64)',
+                                            'rgb(255, 205, 86)',
+                                            'rgb(75, 192, 192)',
+                                            'rgb(54, 162, 235)',
+                                            'rgb(153, 102, 255)',
+                                            'rgb(201, 203, 207)'
+                                            ];
+
+                                            var myChart = new Chart(ctx, {
+                                                type: "horizontalBar",
+                                          data: {
+                                          labels: xValues,
+                                          datasets: [{
+                                            backgroundColor: barColors,
+                                            data: datas
+                                          }]
+                                        },
+                                          options: {
+                                            legend: {display: false},
+                                            title: {
+                                              display: true,
+                                              text: "CO2 Emission by Food"
+                                            },
+                                            scales: {
+                                                x: {
+                                                  beginAtZero: true,
+                                                },
+                                              },
+                                          }
+
+
+                                            });
+
+                                        }
+                                        </script>
+
+                                </div>
+
+
+
+
+
+                            </div>
+                            
+        
+        
+        
+                              
+        
+        
+        
+        
+                        </div>  
+                        </div>
+
+
+
+
+
+
+
+
+
+      </div>
+
+  </div>
+</main>
+
+
+    <!-- <script src="../templates/assets/dist/js/bootstrap.bundle.min.js"></script> -->
+
+      
+  </body>
+</html>
